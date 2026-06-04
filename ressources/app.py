@@ -23,7 +23,7 @@ def index():
 
 @app.route("/health")
 def health():
-    return jsonify({"status": "healthy"})           
+    return jsonify({"status": "healthy"})
 
 
 @app.route("/logs/summary")
