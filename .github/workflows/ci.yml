@@ -49,5 +49,16 @@ jobs:
 
       # TODO: ajouter un step "Lancer les tests"
       # commande : pytest ressources/ -v
-      - name: Lancer les tests
-        run: pytest ressources/ -v
+      # Ajouter la couverture de tests
+      - name: Tests avec couverture
+        run: pytest ressources/ -v --cov=ressources --cov-report=term-missing
+
+      # Uploader le rapport de couverture comme artefact téléchargeable
+      - name: Générer le rapport HTML
+        run: pytest ressources/ --cov=ressources --cov-report=html
+
+      - name: Upload du rapport
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-couverture
+          path: htmlcov/
