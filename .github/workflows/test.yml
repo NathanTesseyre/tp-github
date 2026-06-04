@@ -18,6 +18,13 @@ jobs:
         with:
           python-version: "3.11"
 
+      # Mettre en cache les dépendances pip (accélère les builds suivants)
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('ressources/requirements.txt') }}
+
       # TODO: ajouter un step "Installer les dépendances"
       # commande : pip install -r ressources/requirements.txt
       - name: Installer les dépendances
@@ -38,10 +45,3 @@ jobs:
         with:
           name: rapport-couverture
           path: htmlcov/
-
-      # Mettre en cache les dépendances pip (accélère les builds suivants)
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('ressources/requirements.txt') }}
