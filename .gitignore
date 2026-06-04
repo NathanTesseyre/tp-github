@@ -44,3 +44,5 @@ terraform.rc
 # planout
 
 __pycache__/
+
+*.ps1
