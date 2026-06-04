@@ -19,7 +19,5 @@ jobs:
       - name: Installer flake8
         run: pip install flake8
 
-      # TODO: ajouter un step "Lint avec flake8"
-      # commande : flake8 ressources/ --config ressources/.flake8
       - name: Lint avec flake8
         run: flake8 ressources/ --config ressources/.flake8
