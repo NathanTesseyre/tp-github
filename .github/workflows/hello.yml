@@ -1,7 +1,7 @@
 name: Hello NexaCloud
 
 on:
-  push:
+  # push:
     # branches: [main]
   workflow_dispatch:       # permet de déclencher manuellement depuis l'interface GitHub
 
