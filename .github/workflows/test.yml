@@ -13,8 +13,6 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
 
       # Mettre en cache les dépendances pip (accélère les builds suivants)
       - name: Cache pip
