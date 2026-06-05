@@ -7,8 +7,6 @@ on:
         type: string
         default: nexacloud
     secrets:
-      DOCKERHUB_USERNAME:
-        required: true
       DOCKERHUB_TOKEN:
         required: true
 
