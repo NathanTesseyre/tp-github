@@ -26,7 +26,7 @@ jobs:
     secrets: inherit
     with:
       app-name: nexacloud-staging
-      image-tag: ${{ secrets.DOCKERHUB_USERNAME }}/nexacloud:${{ github.sha }}
+      image-tag: ${{ vars.DOCKERHUB_USERNAME }}/nexacloud:${{ github.sha }}
       resource-group: ${{ vars.AZURE_RESOURCE_GROUP }}
 
   health-check-staging:
