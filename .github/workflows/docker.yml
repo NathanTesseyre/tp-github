@@ -27,7 +27,7 @@ jobs:
         run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/${{ inputs.image-name }}:${{ github.sha }} ./ressources
 
       - name: Run
-        run: docker run -d -p 8080:8000 --name ${{ inputs.image-name }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image-name }}:${{ github.sha }}
+        run: docker run -d -p 8080:8000 --name ${{ inputs.image-name }} ${{ vars.DOCKERHUB_USERNAME }}/${{ inputs.image-name }}:${{ github.sha }}
 
       - uses: ./.github/actions/health-check
         with:
