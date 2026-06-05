@@ -46,3 +46,5 @@ terraform.rc
 __pycache__/
 
 *.ps1
+
+.env
