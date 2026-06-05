@@ -13,6 +13,9 @@ on:
 jobs:
   teardown:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: azure/login@v2
         with:
