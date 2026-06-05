@@ -27,13 +27,6 @@ jobs:
             --resource-group ${{ inputs.resource-group }} \
             --yes
 
-      - name: Delete environment
-        run: |
-          az containerapp env delete \
-            --name ${{ inputs.app-name }}-env \
-            --resource-group ${{ inputs.resource-group }} \
-            --yes
-
       - name: Delete log analytics
         run: |
           az monitor log-analytics workspace delete \
