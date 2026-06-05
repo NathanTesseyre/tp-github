@@ -22,5 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
-      - name: Déployer en ${{ inputs.environment }}
-        run: echo "Déploiement en ${{ inputs.environment }}..."
+      - name: Déployer sur Azure App Service ${{ inputs.environment }}
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: "nexacloud-api-ntesseyre"
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_STAGING }}
+          package: ressources/
