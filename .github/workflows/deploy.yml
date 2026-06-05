@@ -34,7 +34,7 @@ jobs:
             --image ${{ inputs.image-tag }} \
             --target-port 8000 \
             --ingress external \
-            -- location westeurope
+            --location francecentral
 
       - id: get-url
         run: |
