@@ -33,7 +33,8 @@ jobs:
             --resource-group ${{ inputs.resource-group }} \
             --image ${{ inputs.image-tag }} \
             --target-port 8000 \
-            --ingress external
+            --ingress external \
+            -- location francecentral
 
       - id: get-url
         run: |
