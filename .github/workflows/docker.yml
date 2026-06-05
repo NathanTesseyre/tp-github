@@ -29,11 +29,9 @@ jobs:
       - name: Run
         run: docker run -d -p 8080:8000 --name ${{ inputs.image-name }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image-name }}:${{ github.sha }}
 
-      - name: Vérifications
-        run: |
-          sleep 5
-          curl --fail http://localhost:8080/health
-          curl --fail http://localhost:8080/logs/summary
+      - uses: ./.github/actions/smoke-test
+        with:
+          base-url: http://localhost:8080
 
       - name: Stop
         run: docker stop ${{ inputs.image-name }}
