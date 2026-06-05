@@ -10,22 +10,47 @@ jobs:
 
   lint:
     uses: ./.github/workflows/lint.yml
+
   test:
     needs: lint
     uses: ./.github/workflows/test.yml
+
   docker:
     uses: ./.github/workflows/docker.yml
     needs: test
     secrets: inherit
-  # staging:
-  #   needs: test
-  #   secrets: inherit
+
+  deploy-staging:
+    uses: ./.github/workflows/deploy.yml
+    needs: docker
+    secrets: inherit
+    with:
+      app-name: nexacloud-staging
+      image-tag: ${{ secrets.DOCKERHUB_USERNAME }}/nexacloud:${{ github.sha }}
+      resource-group: ${{ vars.AZURE_RESOURCE_GROUP }}
+
+  health-check-staging:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/health-check
+        with:
+          base-url: ${{ needs.deploy-staging.outputs.app-url }}
+
+  teardown-staging:
+    uses: ./.github/workflows/teardown.yml
+    needs: health-check-staging
+    secrets: inherit
+    with:
+      app-name: nexacloud-staging
+      resource-group: ${{ vars.AZURE_RESOURCE_GROUP }}
+
+  # deploy-prod:
   #   uses: ./.github/workflows/deploy.yml
-  #   with:
-  #     environment: "staging"
-  # production:
-  #   needs: staging
+  #   needs: teardown-staging
   #   secrets: inherit
-  #   uses: ./.github/workflows/deploy.yml
   #   with:
-  #     environment: "production"
+  #     app-name: nexacloud-prod
+  #     image-tag: ${{ secrets.DOCKERHUB_USERNAME }}/nexacloud:${{ github.sha }}
+  #     resource-group: ${{ vars.AZURE_RESOURCE_GROUP }}
