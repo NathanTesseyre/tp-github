@@ -11,5 +11,5 @@ runs:
     - name: Vérifications
       shell: bash
       run: |
-        curl --fail --retry 10 --retry-delay 2 --retry-connrefused ${{ inputs.base-url }}/health
+        curl --fail --retry 10 --retry-delay 2 --retry-all-errors ${{ inputs.base-url }}/health
         curl --fail ${{ inputs.base-url }}/logs/summary
