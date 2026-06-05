@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
+      - uses: actions/checkout@v4
       - name: Déployer sur Azure App Service ${{ inputs.environment }}
         uses: azure/webapps-deploy@v3
         with:
