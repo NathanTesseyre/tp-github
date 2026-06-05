@@ -18,6 +18,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     outputs:
       app-url: ${{ steps.get-url.outputs.url }}
     steps:
