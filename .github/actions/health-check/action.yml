@@ -1,0 +1,15 @@
+# .github/actions/smoke-test/action.yml
+name: Smoke Test
+description: Vérifie les endpoints de l'API
+inputs:
+  base-url:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Vérifications
+      shell: bash
+      run: |
+        curl --fail --retry 10 --retry-delay 2 --retry-connrefused ${{ inputs.base-url }}/health
+        curl --fail ${{ inputs.base-url }}/logs/summary

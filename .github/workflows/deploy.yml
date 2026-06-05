@@ -6,6 +6,9 @@ on:
       environment:
         required: true
         type: string
+    secrets:
+      AZURE_WEBAPP_PUBLISH_PROFILE:
+        required: true
   workflow_dispatch:
     inputs:
       environment:
@@ -22,5 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
-      - name: Déployer en ${{ inputs.environment }}
-        run: echo "Déploiement en ${{ inputs.environment }}..."
+      - uses: actions/checkout@v4
+      - name: Déployer sur Azure App Service ${{ inputs.environment }}
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: "nexacloud-api-ntesseyre"
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ressources/
