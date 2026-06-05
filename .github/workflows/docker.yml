@@ -29,7 +29,7 @@ jobs:
       - name: Run
         run: docker run -d -p 8080:8000 --name ${{ inputs.image-name }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image-name }}:${{ github.sha }}
 
-      - uses: ./.github/actions/smoke-test
+      - uses: ./.github/actions/health-check
         with:
           base-url: http://localhost:8080
 
