@@ -13,15 +13,19 @@ jobs:
   test:
     needs: lint
     uses: ./.github/workflows/test.yml
-  staging:
+  docker:
+    uses: ./.github/workflows/docker.yml
     needs: test
     secrets: inherit
-    uses: ./.github/workflows/deploy.yml
-    with:
-      environment: "staging"
-  production:
-    needs: staging
-    secrets: inherit
-    uses: ./.github/workflows/deploy.yml
-    with:
-      environment: "production"
+  # staging:
+  #   needs: test
+  #   secrets: inherit
+  #   uses: ./.github/workflows/deploy.yml
+  #   with:
+  #     environment: "staging"
+  # production:
+  #   needs: staging
+  #   secrets: inherit
+  #   uses: ./.github/workflows/deploy.yml
+  #   with:
+  #     environment: "production"
