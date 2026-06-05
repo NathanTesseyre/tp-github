@@ -9,6 +9,8 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+    commit-message:
+      prefix: "ci"
 
   # ── Mettre à jour les dépendances Python ──────────────────────────
   - package-ecosystem: "pip"
@@ -19,3 +21,5 @@ updates:
       - "dependencies"
       - "python"
     open-pull-requests-limit: 5      # max 5 PRs ouvertes en même temps
+    commit-message:
+      prefix: "chore"
