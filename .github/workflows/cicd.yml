@@ -37,7 +37,7 @@ jobs:
     needs: deploy-staging
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/health-check
         with:
           base-url: ${{ needs.deploy-staging.outputs.app-url }}
